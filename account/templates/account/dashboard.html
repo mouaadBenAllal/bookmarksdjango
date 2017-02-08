@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+    Dashboard
+{% endblock %}
+{% block content %}
+    <h1>Dashboard</h1>
+    <p>Welcome to your dashboard, {{ request.user.username }}.</p>
+    <h2>User info</h2>
+        <div class="thumbnail">
+        <img src="{{ user.profile.photo.url }}">
+    </div>
+
+    {% if user.first_name|length or user.last_name|length or user.profile.date_of_birth|length > 0 %}
+        <p><b>Firstname:</b> {{ user.first_name }}</p>
+        <p><b>Lastname:</b> {{ user.last_name }}</p>
+        <p><b>Birthday:</b> {{ user.profile.date_of_birth|date:"M d, Y" }}</p>
+{% else %}
+    <p>Add profile info.</p>
+{% endif %}
+{% endblock %}
